@@ -87,6 +87,9 @@ public class MainActivity extends Activity {
                 if(!bluetoothAdapter.isEnabled()){
                     finish();
                 }else{
+                    String temp = userCommandEditText.getText().toString();
+                    userCommandEditText.setText("");
+                    terminalTextView.append(">> " + temp + "\n\n");
                 }
             }
         });

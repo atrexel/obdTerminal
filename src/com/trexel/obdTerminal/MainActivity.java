@@ -346,7 +346,40 @@ public class MainActivity extends Activity {
             }catch (IOException e){
                 Log.d("sendData", "ERROR: " + e);
             }
+        }
 
+
+        private String convertToVIN(String myRawVIN){
+            String carVIN = "";
+
+            String[] splicedVIN = myRawVIN.split(" ");
+            //get indexes: 6, 10, 11, 12, 13, 17, 18, 19, 20
+            //             24, 25, 26, 27, 31, 32, 33, 34
+
+            char[] actualVIN = new char[17];
+            actualVIN[0] = (char)Integer.parseInt(splicedVIN[6], 16);
+            actualVIN[1] = (char)Integer.parseInt(splicedVIN[10], 16);
+            actualVIN[2] = (char)Integer.parseInt(splicedVIN[11], 16);
+            actualVIN[3] = (char)Integer.parseInt(splicedVIN[12], 16);
+            actualVIN[4] = (char)Integer.parseInt(splicedVIN[13], 16);
+            actualVIN[5] = (char)Integer.parseInt(splicedVIN[17], 16);
+            actualVIN[6] = (char)Integer.parseInt(splicedVIN[18], 16);
+            actualVIN[7] = (char)Integer.parseInt(splicedVIN[19], 16);
+            actualVIN[8] = (char)Integer.parseInt(splicedVIN[20], 16);
+            actualVIN[9] = (char)Integer.parseInt(splicedVIN[24], 16);
+            actualVIN[10] = (char)Integer.parseInt(splicedVIN[25], 16);
+            actualVIN[11] = (char)Integer.parseInt(splicedVIN[26], 16);
+            actualVIN[12] = (char)Integer.parseInt(splicedVIN[27], 16);
+            actualVIN[13] = (char)Integer.parseInt(splicedVIN[31], 16);
+            actualVIN[14] = (char)Integer.parseInt(splicedVIN[32], 16);
+            actualVIN[15] = (char)Integer.parseInt(splicedVIN[33], 16);
+            actualVIN[16] = (char)Integer.parseInt(splicedVIN[34], 16);
+
+            for(int i = 0; i < actualVIN.length; i++){
+                carVIN = carVIN + Character.toString(actualVIN[i]);
+            }
+
+            return carVIN;
         }
 
 

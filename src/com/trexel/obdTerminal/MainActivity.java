@@ -343,6 +343,32 @@ public class MainActivity extends Activity {
                 Log.d("sendData", "Byte Output: " + buffer);
                 Log.d("sendData", "String Output: " + result);
 
+
+                message = "0131\r";
+
+                Log.d("sendData", "Input: " + message);
+                outputstream.write(message.getBytes());
+                Log.d("sendData", "Finished writing to OBD");
+                outputstream.flush();
+                Log.d("sendData", "Flushed output stream");
+
+                Log.d("sendData", "Sleeping while waiting for OBD");
+                try {
+                    Thread.currentThread().sleep(3000);
+                }catch(Exception e){
+                    Log.e("ERROR", "Exception: "+e);
+                }
+                Log.d("sendData", "Trying to read from buffer");
+                buffer = new byte[1024];
+                inputstream.read(buffer);
+                Log.d("sendData", "Finished reading from buffer");
+
+                result = new String(buffer);
+                result = result.split(">")[0];
+                Log.d("sendData", "Byte Output: " + buffer);
+                Log.d("sendData", "String Output: " + result);
+
+
             }catch (IOException e){
                 Log.d("sendData", "ERROR: " + e);
             }
